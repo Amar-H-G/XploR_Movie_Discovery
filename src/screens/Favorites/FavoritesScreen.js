@@ -145,11 +145,15 @@ export default function FavoritesScreen({navigation}) {
               onRemove={handleRemove}
             />
           )}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          ItemSeparatorComponent={ItemSeparator}
         />
       )}
     </View>
   );
+}
+
+function ItemSeparator() {
+  return <View style={styles.separator} />;
 }
 
 const styles = StyleSheet.create({

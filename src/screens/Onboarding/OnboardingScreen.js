@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Colors, Typography, Spacing, BorderRadius} from '../../theme';
 import {setOnboardingDone} from '../../storage/storageService';
 
-const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
+const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
 const SLIDES = [
   {

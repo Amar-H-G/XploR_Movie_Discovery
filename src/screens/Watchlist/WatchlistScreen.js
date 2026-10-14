@@ -142,11 +142,15 @@ export default function WatchlistScreen({navigation}) {
               onRemove={handleRemove}
             />
           )}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          ItemSeparatorComponent={ItemSeparator}
         />
       )}
     </View>
   );
+}
+
+function ItemSeparator() {
+  return <View style={styles.separator} />;
 }
 
 const styles = StyleSheet.create({

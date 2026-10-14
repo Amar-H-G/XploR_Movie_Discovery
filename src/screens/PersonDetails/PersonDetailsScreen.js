@@ -22,7 +22,6 @@ import {
   getTitle,
   getYear,
   getReleaseDate,
-  formatRating,
 } from '../../utils/helpers';
 import {DetailsSkeleton} from '../../components/skeletons/Skeletons';
 import {ErrorState} from '../../components/states/StateComponents';

@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Colors, Typography, Spacing} from '../../theme';
+import {Colors, Spacing} from '../../theme';
 import {getOnboardingDone} from '../../storage/storageService';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('window');

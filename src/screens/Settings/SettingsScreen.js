@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  TextInput,
   StatusBar,
   ActivityIndicator,
   Linking,

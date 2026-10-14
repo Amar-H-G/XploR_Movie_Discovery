@@ -3,9 +3,18 @@ import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-// Read tokens from process.env if injected, with default fallback
-let runtimeToken = process.env.TMDB_BEARER_TOKEN || '';
-let runtimeApiKey = process.env.TMDB_API_KEY || '';
+let envConfig = {};
+try {
+  const mod = require('./envConfig');
+  envConfig = mod.default || mod || {};
+} catch {
+  // Optional untracked config
+}
+
+// Read tokens from envConfig / process.env if injected, with default fallback
+let runtimeToken =
+  envConfig.TMDB_BEARER_TOKEN || process.env.TMDB_BEARER_TOKEN || '';
+let runtimeApiKey = envConfig.TMDB_API_KEY || process.env.TMDB_API_KEY || '';
 
 export const setRuntimeToken = token => {
   runtimeToken = token;

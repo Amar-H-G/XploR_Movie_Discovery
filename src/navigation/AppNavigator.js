@@ -3,7 +3,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Colors, Typography} from '../theme';
+import {Colors} from '../theme';
 
 // Screens
 import SplashScreen from '../screens/Splash/SplashScreen';
@@ -19,8 +19,15 @@ import GenresScreen from '../screens/Genres/GenresScreen';
 import GenreListScreen from '../screens/Genres/GenreListScreen';
 import PersonDetailsScreen from '../screens/PersonDetails/PersonDetailsScreen';
 
-const Tab = createBottomTabNavigator();
+// ─── Module-level Navigator instances (Never re-create in render) ────────────
+
 const RootStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const HomeNav = createNativeStackNavigator();
+const SearchNav = createNativeStackNavigator();
+const FavoritesNav = createNativeStackNavigator();
+const WatchlistNav = createNativeStackNavigator();
+const SettingsNav = createNativeStackNavigator();
 
 // ─── Route names ─────────────────────────────────────────────────────────────
 
@@ -68,71 +75,121 @@ const stackOptions = {
   animation: 'slide_from_right',
 };
 
-// ─── Shared Screens ─────────────────────────────────────────────────────────
-
-const renderSharedScreens = Stack => (
-  <>
-    <Stack.Screen name={ROUTES.MOVIE_DETAILS} component={MovieDetailsScreen} />
-    <Stack.Screen name={ROUTES.TV_DETAILS} component={TVDetailsScreen} />
-    <Stack.Screen
-      name={ROUTES.PERSON_DETAILS}
-      component={PersonDetailsScreen}
-    />
-    <Stack.Screen name={ROUTES.GENRES} component={GenresScreen} />
-    <Stack.Screen name={ROUTES.GENRE_LIST} component={GenreListScreen} />
-  </>
-);
+// ─── Individual Tab Stacks (Direct Screen children, NO fragments) ───────────
 
 function HomeStack() {
-  const S = createNativeStackNavigator();
   return (
-    <S.Navigator screenOptions={stackOptions}>
-      <S.Screen name={ROUTES.HOME} component={HomeScreen} />
-      {renderSharedScreens(S)}
-    </S.Navigator>
+    <HomeNav.Navigator screenOptions={stackOptions}>
+      <HomeNav.Screen name={ROUTES.HOME} component={HomeScreen} />
+      <HomeNav.Screen
+        name={ROUTES.MOVIE_DETAILS}
+        component={MovieDetailsScreen}
+      />
+      <HomeNav.Screen name={ROUTES.TV_DETAILS} component={TVDetailsScreen} />
+      <HomeNav.Screen
+        name={ROUTES.PERSON_DETAILS}
+        component={PersonDetailsScreen}
+      />
+      <HomeNav.Screen name={ROUTES.GENRES} component={GenresScreen} />
+      <HomeNav.Screen name={ROUTES.GENRE_LIST} component={GenreListScreen} />
+    </HomeNav.Navigator>
   );
 }
 
 function SearchStack() {
-  const S = createNativeStackNavigator();
   return (
-    <S.Navigator screenOptions={stackOptions}>
-      <S.Screen name={ROUTES.SEARCH} component={SearchScreen} />
-      {renderSharedScreens(S)}
-    </S.Navigator>
+    <SearchNav.Navigator screenOptions={stackOptions}>
+      <SearchNav.Screen name={ROUTES.SEARCH} component={SearchScreen} />
+      <SearchNav.Screen
+        name={ROUTES.MOVIE_DETAILS}
+        component={MovieDetailsScreen}
+      />
+      <SearchNav.Screen name={ROUTES.TV_DETAILS} component={TVDetailsScreen} />
+      <SearchNav.Screen
+        name={ROUTES.PERSON_DETAILS}
+        component={PersonDetailsScreen}
+      />
+      <SearchNav.Screen name={ROUTES.GENRES} component={GenresScreen} />
+      <SearchNav.Screen name={ROUTES.GENRE_LIST} component={GenreListScreen} />
+    </SearchNav.Navigator>
   );
 }
 
 function FavoritesStack() {
-  const S = createNativeStackNavigator();
   return (
-    <S.Navigator screenOptions={stackOptions}>
-      <S.Screen name={ROUTES.FAVORITES} component={FavoritesScreen} />
-      {renderSharedScreens(S)}
-    </S.Navigator>
+    <FavoritesNav.Navigator screenOptions={stackOptions}>
+      <FavoritesNav.Screen
+        name={ROUTES.FAVORITES}
+        component={FavoritesScreen}
+      />
+      <FavoritesNav.Screen
+        name={ROUTES.MOVIE_DETAILS}
+        component={MovieDetailsScreen}
+      />
+      <FavoritesNav.Screen
+        name={ROUTES.TV_DETAILS}
+        component={TVDetailsScreen}
+      />
+      <FavoritesNav.Screen
+        name={ROUTES.PERSON_DETAILS}
+        component={PersonDetailsScreen}
+      />
+      <FavoritesNav.Screen name={ROUTES.GENRES} component={GenresScreen} />
+      <FavoritesNav.Screen
+        name={ROUTES.GENRE_LIST}
+        component={GenreListScreen}
+      />
+    </FavoritesNav.Navigator>
   );
 }
 
 function WatchlistStack() {
-  const S = createNativeStackNavigator();
   return (
-    <S.Navigator screenOptions={stackOptions}>
-      <S.Screen name={ROUTES.WATCHLIST} component={WatchlistScreen} />
-      {renderSharedScreens(S)}
-    </S.Navigator>
+    <WatchlistNav.Navigator screenOptions={stackOptions}>
+      <WatchlistNav.Screen
+        name={ROUTES.WATCHLIST}
+        component={WatchlistScreen}
+      />
+      <WatchlistNav.Screen
+        name={ROUTES.MOVIE_DETAILS}
+        component={MovieDetailsScreen}
+      />
+      <WatchlistNav.Screen
+        name={ROUTES.TV_DETAILS}
+        component={TVDetailsScreen}
+      />
+      <WatchlistNav.Screen
+        name={ROUTES.PERSON_DETAILS}
+        component={PersonDetailsScreen}
+      />
+      <WatchlistNav.Screen name={ROUTES.GENRES} component={GenresScreen} />
+      <WatchlistNav.Screen
+        name={ROUTES.GENRE_LIST}
+        component={GenreListScreen}
+      />
+    </WatchlistNav.Navigator>
   );
 }
 
 function SettingsStack() {
-  const S = createNativeStackNavigator();
   return (
-    <S.Navigator screenOptions={stackOptions}>
-      <S.Screen name={ROUTES.SETTINGS} component={SettingsScreen} />
-    </S.Navigator>
+    <SettingsNav.Navigator screenOptions={stackOptions}>
+      <SettingsNav.Screen name={ROUTES.SETTINGS} component={SettingsScreen} />
+    </SettingsNav.Navigator>
   );
 }
 
 // ─── Main Tab Navigator ──────────────────────────────────────────────────────
+
+function renderTabIcon(routeName, focused, color, size) {
+  const icons = TAB_ICONS[routeName];
+  const iconName = icons
+    ? focused
+      ? icons.focused
+      : icons.unfocused
+    : 'ellipse-outline';
+  return <Icon name={iconName} size={size} color={color} />;
+}
 
 function MainTabs() {
   return (
@@ -153,15 +210,8 @@ function MainTabs() {
           fontSize: 10,
           fontWeight: '600',
         },
-        tabBarIcon: ({focused, color, size}) => {
-          const icons = TAB_ICONS[route.name];
-          const iconName = icons
-            ? focused
-              ? icons.focused
-              : icons.unfocused
-            : 'ellipse-outline';
-          return <Icon name={iconName} size={size} color={color} />;
-        },
+        tabBarIcon: ({focused, color, size}) =>
+          renderTabIcon(route.name, focused, color, size),
       })}>
       <Tab.Screen
         name={ROUTES.HOME_TAB}

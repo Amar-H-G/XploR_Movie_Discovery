@@ -12,11 +12,10 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Colors, Spacing, Typography} from '../../theme';
+import {Colors, Spacing} from '../../theme';
 
 import {
   getTrendingMovies,
-  getTrendingAll,
   getPopularMovies,
   getTopRatedMovies,
   getUpcomingMovies,
@@ -29,7 +28,6 @@ import MovieCard from '../../components/movie/MovieCard';
 import HeroCard from '../../components/movie/HeroCard';
 import TVCard from '../../components/tv/TVCard';
 import SectionHeader from '../../components/common/SectionHeader';
-import SearchBar from '../../components/common/SearchBar';
 import {
   MovieRailSkeleton,
   HeroCardSkeleton,

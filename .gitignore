@@ -38,6 +38,7 @@ local.properties
 .env
 .env.local
 .env.*.local
+src/api/envConfig.js
 
 # node.js
 #

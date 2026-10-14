@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   FlatList,
   StatusBar,
-  Dimensions,
   Linking,
   Share,
   Alert,
@@ -45,7 +44,6 @@ import useFavorites from '../../hooks/useFavorites';
 import useWatchlist from '../../hooks/useWatchlist';
 import {ROUTES} from '../../navigation/AppNavigator';
 
-const {width: SCREEN_WIDTH} = Dimensions.get('window');
 const BACKDROP_HEIGHT = 240;
 
 export default function MovieDetailsScreen({route, navigation}) {

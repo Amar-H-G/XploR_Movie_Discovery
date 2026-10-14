@@ -42,8 +42,6 @@ const TABS = [
 ];
 
 function SearchResultItem({item, onPress}) {
-  const isMovie = item.media_type === 'movie' || item.title;
-  const isTV = item.media_type === 'tv' || (item.name && !item.known_for);
   const isPerson = item.media_type === 'person' || !!item.known_for;
 
   const title = getTitle(item);
