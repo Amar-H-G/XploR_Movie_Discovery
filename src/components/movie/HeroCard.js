@@ -10,12 +10,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {
-  Colors,
-  BorderRadius,
-  Typography,
-  Spacing,
-} from '../../theme';
+import {Colors, BorderRadius, Typography, Spacing} from '../../theme';
 import {buildBackdropUrl} from '../../api/imageService';
 import {
   formatRating,
